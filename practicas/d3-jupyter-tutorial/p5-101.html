@@ -1,0 +1,39 @@
+
+<html>
+<head>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.4.6/p5.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.4.6/addons/p5.dom.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.4.6/addons/p5.sound.js"></script>
+
+</head>
+<body>
+<h3>Script: p5-101.html</h3>
+<script>
+
+var circleX= 50;
+var circleY= 150;
+
+function setup(){
+    createCanvas(600, 400)
+}
+
+function draw(){
+    
+    //color de fondo
+    background(250, 250, 100);
+    
+    //elipse
+    fill(250, 200, 200);
+    ellipse(circleX, 200, 80, 80);
+    
+    //elipse
+    fill(250, 200, 200);
+    ellipse(circleY, 200, -80, -80);
+    
+    circleX = circleX + 1;
+    circleY = circleY - 1;
+}
+
+</script>
+</body>
+</html>

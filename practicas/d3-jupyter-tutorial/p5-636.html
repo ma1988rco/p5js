@@ -1,0 +1,52 @@
+
+<html>
+<head>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.4.6/p5.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.4.6/addons/p5.dom.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.4.6/addons/p5.sound.js"></script>
+
+</head>
+<body>
+<h3>Script: p5-636.html</h3>
+<script>
+
+let bubble1, bubble2;
+
+function setup() {
+    createCanvas(600, 400);
+    bubble = new Bubble();
+    println(bubble.x, bubble.y);
+    
+}
+
+function draw() {
+    background(0);
+    bubble.move();
+    bubble.show();
+
+}
+
+class Bubble() {
+    constructor() {
+        this.x = 200;
+        this.y = 150;
+    }
+    
+ move() {
+     bubble.x = bubble.x + random(-1, 1);
+     bubble.y = bubble.y + random(-1, 1);
+ }   
+
+show (){
+    stroke(255);
+     //strokeWeight(4);
+     //noFill();
+    //ellipse(bibble.x, bubble.y, 24, 24)
+}    
+        
+    
+  
+    
+</script>
+</body>
+</html>

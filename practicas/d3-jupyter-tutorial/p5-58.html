@@ -1,0 +1,37 @@
+
+<html>
+<head>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.4.6/p5.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.4.6/addons/p5.dom.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.4.6/addons/p5.sound.js"></script>
+
+</head>
+<body>
+<h3>Script: p5-58.html</h3>
+<script>
+
+var x = 0;
+var y = 200;
+var diameter = 50;
+var r = 218;
+var g = 160;
+var b = 221;
+
+function aetup(){
+  createCanvas(600, 400);
+}
+
+
+function draw() {
+    // color de fondo
+    background(r, g, b);
+    //elipse
+    fill(250, 200, 200);
+    ellipse(x, y, diameter, diameter);
+    
+    x = x + 1;
+    
+}
+</script>
+</body>
+</html>

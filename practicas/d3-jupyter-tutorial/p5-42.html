@@ -1,0 +1,33 @@
+
+<html>
+<head>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.4.6/p5.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.4.6/addons/p5.dom.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.4.6/addons/p5.sound.js"></script>
+
+</head>
+<body>
+<h3>Script: p5-42.html</h3> 
+<script>
+
+var dropzone;
+function setup() {
+    createCanvas(200, 200);
+    background(0);
+    
+    
+    dropzpne = select('#dropzone');
+    dropzone.dragOver(highlight);
+    dropzone.dragLeave(unhighlight);
+}
+
+function highlight() {
+    dropzone.style('background-color' , '#ccc');
+}
+
+function unhighlight() {
+    dropzone.style('background-color', '·fff');
+}
+</script>
+</body>
+</html>

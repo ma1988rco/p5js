@@ -1,0 +1,30 @@
+
+<html>
+<head>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.4.6/p5.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.4.6/addons/p5.dom.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.4.6/addons/p5.sound.js"></script>
+
+</head>
+<body>
+<h3>Script: p5-671.html</h3>
+<script>
+
+var nums = [100, 25, 46, 72];
+
+var num = 23;
+
+function setup() {
+    createCanvas(400, 400);
+}
+
+function draw() {
+    background(0);
+    
+    ellipse(100, 200, num, num);
+    
+    ellipse(200, 200, num[2], nums[2]);
+}
+</script>
+</body>
+</html>

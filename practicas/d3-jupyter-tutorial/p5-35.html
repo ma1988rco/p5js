@@ -1,0 +1,34 @@
+
+<html>
+<head>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.4.6/p5.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.4.6/addons/p5.dom.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.4.6/addons/p5.sound.js"></script>
+
+</head>
+<body>
+<h3>Script: p5-35.html</h3> 
+<script>
+
+function setup() {
+  noCanvas();
+  p = createP('this is a link: ');
+  p.style('background-color', '·CCC');
+  p.style('pandding', '24px');
+  
+  var a = createA('#', 'apples');
+  a.mousePressed(addphoto);
+  
+  
+  a.parent(p);
+
+}
+
+function addphoto() {
+  var img = createImg('apple.jpg');
+  img.size(100, 100);
+  img.parent(p);
+}
+</script>
+</body>
+</html>

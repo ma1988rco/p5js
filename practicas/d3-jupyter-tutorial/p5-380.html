@@ -1,0 +1,42 @@
+
+<html>
+<head>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.4.6/p5.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.4.6/addons/p5.dom.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.4.6/addons/p5.sound.js"></script>
+
+</head>
+<body>
+<h3>Script: p5-380.html</h3>
+<script>
+
+var trianX= 0;
+var trianY= 600;
+var trianG= 600;
+var trianH= 600;
+
+function setup(){
+    createCanvas(600, 400);
+}
+
+function draw(){
+    
+    //color de fondo
+    background(250, 250, 100);
+    
+   
+    fill(250, 200, 200);
+    triangle(80,200, 340,200, 215,0);
+    
+    fill(250, 200, 200);
+    triangle(trianY,80,200, trianG,340,200, 215,380);
+    
+   
+    trianX = trianX  + 1;
+    trianY = trianY  - 1;
+    trianG = trianG  - 1;
+}
+
+</script>
+</body>
+</html>

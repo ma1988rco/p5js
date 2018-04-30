@@ -1,0 +1,43 @@
+
+<html>
+<head>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.4.6/p5.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.4.6/addons/p5.dom.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.4.6/addons/p5.sound.js"></script>
+
+</head>
+<body>
+<h3>Script: p5-567.html</h3>
+<script>
+
+function setup() {
+    createCanvas(480, 270);
+}
+
+function draw() {
+    background(200 , 200, 0); // color fondo 
+    ellipseMode(CENTER);
+    rectMode(CENTER);
+    
+    
+    //cuerpo
+    fill(255, 0, 0);
+    rect(240, 145, 20, 100);
+    
+    //cabeza
+    fill(0, 0, 255, 100); //fill  poner color a cada parte de la fivura
+    ellipse(240, 115, 60, 60);
+    
+    //ojos
+    fill(0, 255, 0);
+    ellipse(221, 115, 16, 32);
+    ellipse(259, 115, 16, 32);
+    
+    //piernas
+    
+    line(230, 195, 220, 205);
+    line(250, 195, 260, 205);
+}
+</script>
+</body>
+</html>
