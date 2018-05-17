@@ -1,0 +1,48 @@
+
+<html>
+<head>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.4.6/p5.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.4.6/addons/p5.dom.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.4.6/addons/p5.sound.js"></script>
+
+</head>
+<body>
+<h3>Script: p5-78.html</h3> 
+<script>
+
+var font;
+
+
+function preload() {
+    font = loadFont('AvenirNextLTPro-Demi.otf');
+}
+
+
+function setup() {
+    createCanvas(600, 300);
+    background(51);
+    textFont(font);
+    textSize(128);
+    fill(255);
+    noStroke();
+    text('train', 100, 200);
+    
+    
+    var points = font.textToPoints('train' , 100, 200);
+    console.log(points);
+    
+    for (var i = 0; i <points.legth; i++){
+        var point = points[i];
+        stroke(0,255,0);
+        strokeWeight(4);
+        point(pt.x, pt.y);
+    }
+}
+
+
+function draw(){
+    
+}
+</script>
+</body>
+</html>

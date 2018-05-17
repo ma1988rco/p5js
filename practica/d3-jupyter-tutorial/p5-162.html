@@ -1,0 +1,54 @@
+
+<html>
+<head>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.4.6/p5.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.4.6/addons/p5.dom.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.4.6/addons/p5.sound.js"></script>
+
+</head>
+<body>
+<h3>Script: p5-162.html</h3> 
+<script>
+
+
+var x = new Array(20);  // **cambio** float[] x = new float[20] a new Array(20)
+var y = new Array(20);  // **cambio** float[] y = new float[20] a new Array(20)
+var segLength = 18;                                 // **cambio** float to var
+
+function setup() {                          // **cambio** void setup() a function setup()
+  createCanvas(640, 360);                   // **cambio** size() a createCanvas()
+  strokeWeight(9);                          // strokeWeight() queda igual
+  stroke(255, 100);                         // stroke() queda igual
+  for(var i=0; i<x.length; i++) {         // inicializa el arreglo
+    x[i]=0;
+    y[i]=0;
+  }
+}
+
+function draw() {                           // **cambio** void draw() a function draw()
+  background(0);                            // background() is the same
+  drawSegment(0, mouseX, mouseY);           // functions calls, mouseX and mouseY are the same
+  for(var i=0; i<x.length-1; i++) {         // **cambio** int i a var i
+    drawSegment(i+1, x[i], y[i]);           // function calls are the same
+  }
+}
+
+function drawSegment(i, xin, yin) {         // **cambio** void drawSegment() a function drawSegment(), quita las declaraciones de tipo de dato
+  var dx = xin - x[i];                      // **cambio** float a var
+  var dy = yin - y[i];                      // **cambio** float a var
+  var angle = atan2(dy, dx);                // **cambio** float a var, atan2() queda igual
+  x[i] = xin - cos(angle) * segLength;      // cos() queda igual
+  y[i] = yin - sin(angle) * segLength;      // sin() queda igual
+  segment(x[i], y[i], angle);               // las llamadas a funciones quedan igual
+}
+
+function segment(x, y, a) {                 // **cambio** void segment() a function segment(), quita las declaraciones de tipo de dato
+  push();                            		// pushMatrix() a push()
+  translate(x, y);                          // translate() queda igual
+  rotate(a);                                // rotate() queda igual
+  line(0, 0, segLength, 0);                 // line() queda igual
+  pop();                              		// popMatrix() a pop()
+}
+</script>
+</body>
+</html>

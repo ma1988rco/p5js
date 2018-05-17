@@ -1,0 +1,102 @@
+
+<html>
+<head>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.4.6/p5.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.4.6/addons/p5.dom.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.4.6/addons/p5.sound.js"></script>
+
+</head>
+<body>
+<h3>Script: p5-151.html</h3> 
+<script>
+
+var w;
+var columns;
+var rows;
+var board;
+var next;
+
+function setup() {
+  createCanvas(720, 400);
+  w = 20;
+  // Calcular columnas y filas
+  columns = floor(width/w);
+  rows = floor(height/w);
+  // Una forma rara de hacer una matriz 2D es JS
+  board = new Array(columns);
+  for (var i = 0; i < columns; i++) {
+    board[i] = new Array(rows);
+  } 
+  // Ir a usar multiples matrices 2D y cambiarlas
+  next = new Array(columns);
+  for (i = 0; i < columns; i++) {
+    next[i] = new Array(rows);
+  }
+  init();
+}
+
+function draw() {
+  background(255);
+  generate();
+  for ( var i = 0; i < columns;i++) {
+    for ( var j = 0; j < rows;j++) {
+      if ((board[i][j] == 1)) fill(0);
+      else fill(255); 
+      stroke(0);
+      rect(i*w, j*w, w-1, w-1);
+    }
+  }
+
+}
+
+// restablecer la placa cuando se presiona el mouse
+function mousePressed() {
+  init();
+}
+
+// tablero de relleno al azar
+function init() {
+  for (var i = 0; i < columns; i++) {
+    for (var j = 0; j < rows; j++) {
+      // alineado los bordes con 0s
+      if (i == 0 || j == 0 || i == columns-1 || j == rows-1) board[i][j] = 0;
+      // rellenar el resto al azar
+      else board[i][j] = floor(random(2));
+      next[i][j] = 0;
+    }
+  }
+}
+
+// El proceso de crear la nueva generacion
+function generate() {
+
+  // pasa por cada punto de nuestra matriz 2D y marca puntos vecinos
+  for (var x = 1; x < columns - 1; x++) {
+    for (var y = 1; y < rows - 1; y++) {
+      // suma todos los estados en una grilla circundante de 3x3
+      var neighbors = 0;
+      for (var i = -1; i <= 1; i++) {
+        for (var j = -1; j <= 1; j++) {
+          neighbors += board[x+i][y+j];
+        }
+      }
+
+      // Un pequeño grupo para restar el estado de la celda actual
+      // lo agregamos en el ciclo de arriba
+      neighbors -= board[x][y];
+      // reglas de vida
+      if      ((board[x][y] == 1) && (neighbors <  2)) next[x][y] = 0;           // Loneliness
+      else if ((board[x][y] == 1) && (neighbors >  3)) next[x][y] = 0;           // Overpopulation
+      else if ((board[x][y] == 0) && (neighbors == 3)) next[x][y] = 2;           // Reproduction
+      else                                             next[x][y] = board[x][y]; // Stasis
+    }
+  }
+
+  // Intercambiar!
+  var temp = board;
+  board = next;
+  next = temp;
+}
+</script>
+</body>
+</html>

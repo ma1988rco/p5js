@@ -1,0 +1,51 @@
+
+<html>
+<head>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.4.6/p5.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.4.6/addons/p5.dom.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.4.6/addons/p5.sound.js"></script>
+
+</head>
+<body>
+<h3>Script: p5-99.html</h3> 
+<script>
+var a;
+var b;
+var direction;
+
+function setup() {
+  createCanvas(710, 400);
+  colorMode(RGB, width);
+  a = 0;
+  b = width;
+  direction = true;
+  frameRate(30);
+}
+
+function draw() {
+  a++;
+  if(a > width) {
+    a = 'blue';
+    direction = !direction;
+  }
+  if(direction == true){
+    stroke(a);
+  } else {
+    stroke(width-a);
+  }
+  line(a, 0, a, height/2);
+
+  b--;
+  if(b < 0) {
+    b = width;
+  }
+  if(direction == true) {
+    stroke(width-b);
+  } else {
+    stroke(b);
+  }
+  line(b, height/2+1, b, height);
+}
+</script>
+</body>
+</html>

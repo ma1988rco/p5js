@@ -1,0 +1,52 @@
+
+<html>
+<head>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.4.6/p5.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.4.6/addons/p5.dom.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.4.6/addons/p5.sound.js"></script>
+
+</head>
+<body>
+<h3>Script: p5-551.html</h3>
+<script>
+
+var ball = {
+    x: 300,
+    y: 200,
+    xspeed: 4,
+    yspeed: -3
+}
+function setup(){
+    createCanvas(600, 400);
+}
+
+function draw(){
+    background(0);
+    move();
+    bounce();
+    display();
+}
+
+function move(){
+     ball.x = ball.x + ball.xspeed;
+     ball.y = ball.y + ball.yspeed;
+}
+    
+function bounce(){
+    if (ball.x > width || ball.x < 0) {
+        ball.xspeed = ball.xspeed * -2;
+}  
+    if (ball.x > width || ball.x < 0) {
+        ball.yspeed = ball.yspeed * -1;
+    }
+}
+
+function display() {
+    stroke(255);
+    strokeWeight(4);
+    fill(255,0,200);
+    ellipse(ball.x, ball.y, 24, 24);
+}
+</script>
+</body>
+</html>

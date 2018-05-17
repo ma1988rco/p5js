@@ -1,0 +1,107 @@
+
+<html>
+<head>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.4.6/p5.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.4.6/addons/p5.dom.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.4.6/addons/p5.sound.js"></script>
+
+</head>
+<body>
+<h3>Script: p5-38.html</h3> 
+<script>
+
+var x, y; // la pocision actual de la tortuga 
+var currentangle = 0; // que camino esta señalado la tortuga 
+var step = 20;  // cuantro se mueve la tortuga con cada 'F'
+var angle = 90; // cuanto gire la tortuga con '-' o '+'
+
+// 
+var thestring = 'A';
+var numloops = 5; 
+var therules = []; 
+therules[0] = ['A', '-BF+AFA+FB-']; 
+therules[1] = ['B', '+AF-BFB-FA+']; 
+
+var whereinstring = 0; 
+
+function setup() {
+  createCanvas(710, 400);
+  background(255);
+  stroke(0, 0, 0, 255);
+  
+  
+  x = 0;
+  y = height-1;
+  
+  for (var i = 0; i < numloops; i++) {
+    thestring = lindenmayer(thestring);
+  }
+}
+
+function draw() {
+  
+   
+  drawIt(thestring[whereinstring]); 
+  
+  
+  whereinstring++;
+  if (whereinstring > thestring.length-1) whereinstring = 0;
+
+}
+
+function lindenmayer(s) {
+  var outputstring = '';
+  
+
+  for (var i = 0; i < s.length; i++){
+     var ismatch = 0;
+     for (var j = 0; j < therules.length; j++) {
+       if (s[i] == therules[j][0])  {
+         outputstring += therules[j][1];
+         ismatch = 1;
+         break;
+      }
+    }
+    if (ismatch == 0) outputstring+= s[i];
+  }
+    
+  return outputstring; 
+}
+
+function drawIt(k) {
+    
+   if (k=='F') { 
+    
+    var x1 = x + step*cos(radians(currentangle));
+    var y1 = y + step*sin(radians(currentangle));
+    line(x, y, x1, y1); 
+    
+    x = x1;
+    y = y1;
+  } else if (k == '+') {
+    currentangle += angle; 
+  } else if (k == '-') {
+    currentangle -= angle;  
+  }
+
+    
+   
+  var r = random(128, 255);
+  var g = random(0, 192);
+  var b = random(0, 50);
+  var a = random(50, 100);
+         
+    
+  var radius = 0;
+  radius += random(0, 15);
+  radius += random(0, 15);
+  radius += random(0, 15);
+  radius = radius/3;
+    
+   
+  fill(r, g, b, a);
+  rect(x, y, radius, radius);
+} 
+</script>
+</body>
+</html>

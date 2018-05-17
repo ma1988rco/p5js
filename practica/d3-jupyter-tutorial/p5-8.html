@@ -1,0 +1,44 @@
+
+<html>
+<head>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.4.6/p5.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.4.6/addons/p5.dom.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.4.6/addons/p5.sound.js"></script>
+
+</head>
+<body>
+<h3>Script: p5-8.html</h3> 
+<script>
+
+// posición del círculo
+var x, y;
+
+function setup() {
+  createCanvas(720, 400);
+  // empieza en el centro
+  x = width / 2;
+  y = height;
+}
+
+function draw() {
+  background(200);
+
+  // dibujar el círculo
+  stroke(50);
+  fill(100);
+  ellipse(x, y, 24, 24);
+  
+  stroke(50);
+  fill(100);
+  ellipse(x, y, 24, 24);
+
+
+  // moverse aleatoriamente en el eje x
+  x = x + random(-1, 1);
+  // mover hacia arriba a velocidad constante
+  y = y - 1;
+
+  // reset al fondo
+</script>
+</body>
+</html>

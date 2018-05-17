@@ -1,0 +1,42 @@
+
+<html>
+<head>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.4.6/p5.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.4.6/addons/p5.dom.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.4.6/addons/p5.sound.js"></script>
+
+</head>
+<body>
+<h3>Script: p5-574.html</h3>
+<script>
+
+var trian1X= 0;
+var trian2X= 600;
+
+
+function setup(){
+    createCanvas(600, 400);
+}
+
+function draw(){
+    
+    //color de fondo
+    background();
+    
+   
+    fill('lightblue');
+    triangle(trian1X, 220, trian1X-200 ,220, (trian1X+trian1X-200)/2,-0);
+    
+    fill(0, 0, 255, 100);
+    triangle(trian2X,180, trian2X-200, 180, (trian2X+trian2X-200)/2, 400);
+    
+    if(trian2X-19>trian1X){
+        trian1X = trian1X  + 1;
+        trian2X = trian2X  - 1;
+    
+    }
+}
+
+</script>
+</body>
+</html>

@@ -1,0 +1,42 @@
+
+<html>
+<head>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.4.6/p5.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.4.6/addons/p5.dom.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.4.6/addons/p5.sound.js"></script>
+
+</head>
+<body>
+<h3>Script: p5-687.html</h3>
+<script>
+    
+var bubbles = [];
+    
+
+function setup() {
+    createCanvas(600, 400);
+    for (var i = 0; i < 4; i++) {
+    bubbles[0] = {
+        x: 300,
+        y: 200,
+    
+    display: function() {
+        stroke(255);
+        nofill();
+        ellipse(this.x, this.y, 24, 24);
+    },
+    move: funcion() {
+        this.x = this.x + random(-1, 1);
+        this.y = this.y + random(-1, 1);
+    }
+    } 
+}
+
+function draw() {
+    background(0);
+    bubble move();
+    bubble.display();
+}
+</script>
+</body>
+</html>

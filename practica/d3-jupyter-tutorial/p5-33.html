@@ -1,0 +1,158 @@
+
+<html>
+<head>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.4.6/p5.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.4.6/addons/p5.dom.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.4.6/addons/p5.sound.js"></script>
+
+</head>
+<body>
+<h3>Script: p5-33.html</h3> 
+<script>
+
+//Demostracion de fuerzas multiples actuando sobre 
+//cuerpos (Clase mover)
+//Los cuerpos experimentan la gravedad continuamente 
+//Los cuerpos experimentan resistencia a fluidos cuando estan
+
+// cinco cuerpos moviles 
+var movers = [];
+
+// Liquido
+var liquid;
+
+
+function setup() {
+  createCanvas(640, 360);
+  reset();
+  // Crear objeto liquido
+  liquid = new Liquid(0, height/2, width, height/2, 0.1);
+}
+
+function draw() {
+  background(255);
+    strokeWeight(2);
+   line(0, 1, 1045, 585);
+  
+  
+  // sacar el agua
+  liquid.display();
+
+  for (var i = 0; i < movers.length; i++) {
+    
+    // Esta el movimiento del liquido 
+    if (liquid.contains(movers[i])) {
+      // Calcula la fuerza de arrastre
+      var dragForce = liquid.calculateDrag(movers[i]);
+      // Aplica la fuerza de arrastre a mover
+      movers[i].applyForce(dragForce);
+    }
+
+    // La gravedad se escala por masa aqui
+    var gravity = createVector(0, 0.1*movers[i].mass);
+    // Aplica la grvedad
+    movers[i].applyForce(gravity);
+   
+    // Actualizacion y visualizacion
+    movers[i].update();
+    movers[i].display();
+    movers[i].checkEdges();
+  }
+  
+}
+
+
+
+
+function mousePressed() {
+  reset();
+}
+
+// Reinicia todos los objetos mover aleatoriamente
+function reset() {
+  for (var i = 0; i < 9; i++) {
+    movers[i] = new Mover(random(0.5, 3), 40+i*70, 0);
+  }
+}
+
+var Liquid = function(x, y, w, h, c) {
+   this.x = x;
+   this.y = y;
+   this.w = w;
+   this.h = h;
+   this.c = c;
+       
+};
+  
+// Se mueve el liquido
+Liquid.prototype.contains = function(m) {
+  var l = m.position;
+  return l.x > this.x && l.x < this.x + this.w &&
+         l.y > this.y && l.y < this.y + this.h;
+};
+  
+// Calcula la fuerza de arrastre
+Liquid.prototype.calculateDrag = function(m) {
+  // Magnitud es la coeficiente por velocidad al cuadrado
+  var speed = m.velocity.mag();
+  var dragMagnitude = this.c * speed * speed;
+
+  // La direccion es inversa ala velocidad
+  var dragForce = m.velocity.copy();
+  dragForce.mult(-1);
+  
+  // Escala segun la magnitud
+ 
+  dragForce.normalize();
+  dragForce.mult(dragMagnitude);
+  return dragForce;
+};
+  
+Liquid.prototype.display = function() {
+  noStroke();
+  fill(3, 13, 252);
+  
+  //rect(this.x, this.y, this.w, this.h);//
+   
+};
+
+function Mover(m,x,y) {
+  this.mass = m;
+  this.position = createVector(x, y);
+  this.velocity = createVector(0,0);
+  this.acceleration = createVector(0,0);
+}
+
+// segunda ley de Newton
+Mover.prototype.applyForce = function(force) {
+  var f = p5.Vector.div(force,this.mass);
+  this.acceleration.add(f);
+};
+  
+Mover.prototype.update = function() {
+  // La velocidad cambia segun la aceleracion
+  this.velocity.add(this.acceleration);
+  // Cambios de posicion 
+  this.position.add(this.velocity);
+  // Debemos borrar la aceleracion de cada cuadro
+  this.acceleration.mult(0);
+};
+
+Mover.prototype.display = function() {
+  stroke(0);
+  strokeWeight(2);
+  fill(255,127);
+  rect(this.position.x,this.position.y,this.mass*16,this.mass*16);
+};
+
+// rebotar en la parte inferior de la ventana
+Mover.prototype.checkEdges = function() {
+  if (this.position.y > (height - this.mass*8)) {
+    // Un poco de amortiguacion al tocar la parte inferior
+    this.velocity.y *= -0.9;
+    this.position.y = (height - this.mass*8);
+  }
+};
+</script>
+</body>
+</html>
